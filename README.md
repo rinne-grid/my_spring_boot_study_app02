@@ -1,8 +1,3 @@
-## Todoアプリ
-
-![images](http://www.rinsymbol.sakura.ne.jp/github_images/rngd_todo_20210228.png)
-
-
 ## Spring Bootの学習記録(～2021/02/28)
 
 - TODOアプリの作成
