@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="contents">
+	<div class="ui vertical stripe segment">
+		<div class="ui stackable very relaxed center aligned grid container">
+			<div class="ui middle aligned stackable grid container">
+				<div class="row">
+					<div class="eight wide column">
+						<h2 class="ui header">タスクを自由に管理しよう</h2>
+						<p>いままでのタスク管理とは一味も違わない、単なるTODOアプリ。Spring BootとSpring
+							MVCを学ぶために作成。
+							これといって目立った機能はなく、単純なTODOの作成・参照・更新・削除とプロジェクト（カテゴリ）の作成くらいしかない。まだTODOの作成と参照しか実装していない</p>
+						<h2 class="ui header">物事の本質とはタスク実行中にはわからない</h2>
+						<p>それっぽいことを書いてみたかったけど、全く文章が思いつかなかったので、変な内容になった。
+							でも特に気にしなくても大丈夫。早速タスク管理を始めましょう。</p>
+
+					</div>
+
+					<div class="six wide right floated column">
+						<img
+							th:src="@{https://semantic-ui.com/examples/assets/images/wireframe/white-image.png}"
+							class="ui large bordered rounded image">
+					</div>
+				</div>
+				<div class="row">
+					<div class="center aligned column">
+				          <a class="ui huge button" th:href="@{/register}">使ってみる</a>
+				    </div>			
+				</div>
+			</div>
+		</div>		
+	</div>
+<div class="ui vertical stripe quote segment">
+    <div class="ui equal width stackable internally celled grid">
+      <div class="center aligned row">
+        <div class="column">
+          <h3>"このアプリは何ですか"</h3>
+          <p>Spring Boot学習のために作っているシンプルTODOです</p>
+        </div>
+        <div class="column">
+          <h3>他のTODOアプリとの違いはなんですか</h3>
+          <p>
+            <b>違いはありません。むしろ他のTODOアプリの方が高機能です</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="ui vertical stripe segment">
+    <div class="ui text container">
+      <h3 class="ui header">さらにこの情報が知りたいですか？</h3>
+      <p>会員種別によって利用できる機能に違いがあるようです。</p>
+      <a class="ui large button">もっと読む</a>
+      <h4 class="ui horizontal header divider">
+        <a href="#">ケーススタディ</a>
+      </h4>
+      <h3 class="ui header">いったいこのサイトは何ですか？</h3>
+      <p>お答えします</p>
+
+    </div>
+  </div>  	
+</th:block>
+</html>

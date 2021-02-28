@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+
+#logo a, #logo a:visited {
+	text-decoration: none;
+	color: #2B2B2D;
+}
+
+.logo img {
+	height: 3em;
+	vertical-align: -1.2em;
+}
+
+#logo_text {
+	font-size: 1.5em;
+	color: #2B2B2B;
+}
+
+#header_menu a {
+	color: #2B2B2B;
+}

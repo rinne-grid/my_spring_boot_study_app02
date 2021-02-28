@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="contents">
+    <link rel="stylesheet" th:href="@{staticfiles/css/todo_app/top.css}" />
+    <div id="todo_top_box" class="ui container grid">
+        <div class="four wide column">
+            <th:block th:if="${left_menu}" th:include="__${left_menu}__"></th:block>
+        </div>
+        <div class="twelve wide stretched column">
+            <div class="ui segment">
+                <!-- fragment化が必要 -->
+                <form class="ui form" th:action="@{todo/regist}" th:method="post" th:object="${todoForm}">
+                    <div class="ui accordion">
+                     <div class="title">
+                        <i class="dropdown icon"></i>
+                        <b>いますぐTODOを登録</b>
+                      </div>
+                      <div class="content">
+
+                        <div class="field">
+                            <label>件名</label>
+                              <div class="field">
+                                <input type="text" name="subject" placeholder="件名">
+                              </div>
+                        </div>
+                        <div class="field">
+                            <label>本文</label>
+                            <div class="field">
+                                <textarea name="body"></textarea>
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="seven wide field">
+                                <label>開始日</label>
+                                <input type="date" name="start_date" required>
+                            </div>
+                            <div class="six wide field">
+                                <label>開始時刻</label>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <input type="number" name="start_time_hour" step="1"min="0" max="24" required>
+                                    </div>
+                                    <div class="field">
+                                        <input type="number" name="start_time_minutes" step="1" min="0" max="59" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="seven wide field">
+                                <label>終了日</label>
+                                <input type="date" name="end_date">
+                            </div>
+                            <div class="six wide field">
+                                <label>終了時刻</label>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <input type="number" name="end_time_hour" step="1"min="0" max="24">
+                                    </div>
+                                    <div class="field">
+                                        <input type="number" name="end_time_minutes" step="5" min="0" max="59">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="fields">
+                            <div class="field">
+                                  <div class="inline field">
+                                    <div class="ui checkbox">
+                                      
+                                      <input type="checkbox" name="completed" tabindex="0" class="hidden">
+                                      <label>完了状態</label>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <input type="submit" class="ui submit button teal" value="登録">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="ui segment">
+                <div class="ui cards">
+                    <th:block th:each="todo : ${todoList}">
+                    <div class="card">
+                        <div class="content">
+                            <div class="header">[[${todo.subject}]]</div>
+                            <div class="meta">
+                              <span>[[${todo.start_date}]]</span>
+                            </div>
+                            <p>[[${todo.body}]]</p>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script th:src="@{staticfiles/js/todo/top.js}"></script>
+</th:block>
+</html>

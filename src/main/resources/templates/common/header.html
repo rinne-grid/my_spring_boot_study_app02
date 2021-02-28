@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+	<div th:fragment="header">
+		<div id="header" class="full height">
+			<div class="ui borderless main menu">
+				<div class="ui container">
+
+						<div class="item">
+							<div class="ui logo shape">
+								<div class="sides">
+									<div class="header item">
+										<th:block sec:authorize="!isAuthenticated()">
+										<a th:href="@{/}">
+										</th:block>
+										<th:block sec:authorize="isAuthenticated()">
+										<a th:href="@{/top}">
+										</th:block>
+											<img class="logo" th:src="@{staticfiles/image/logo.png}">
+											<span id="logo_text">Rngd Todo</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="header_menu" class="right menu">
+							<div class="item">
+								<th:block sec:authorize="isAuthenticated()">
+									<div class="view-ui floating link item">
+										<p th:text="${#authentication.name}"></p>
+									</div>
+									<div class="view-ui floating link item">
+										<a th:href="@{/logout}">ログアウト</a>
+									</div>
+								</th:block>
+								<th:block sec:authorize="!isAuthenticated()">
+									<div class="view-ui floating link item">
+										<a th:href="@{/login}">ログイン</a>
+									</div>
+									<div class="view-ui floating link item">
+										<a th:href="@{/register}">新規登録</a>
+									</div>
+								</th:block>
+
+							</div>
+						</div>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</html>

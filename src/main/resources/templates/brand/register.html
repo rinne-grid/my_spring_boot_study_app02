@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="contents">
+<style th:inline="text">
+    body {
+      background-color: #DADADA;
+      background: url([[@{staticfiles/image/signup_background.jpg}]]) no-repeat center center fixed;
+      background-size: 100% auto;
+    }
+    body > .grid {
+      height: 100%;
+    }
+
+    .column {
+      max-width: 450px;
+    }
+
+  
+</style>
+<div class="ui middle aligned center aligned grid">
+	<div class="column">
+	    <form class="ui form" th:action="@{signup}" method="post">
+	      <div class="ui segment">
+	    <h2 class="ui teal image header">
+	      <img th:src="@{staticfiles/image/logo.png}" class="image">
+	      <div id="logo_font" class="content">
+	        TODOに新規登録
+	      </div>	      
+	    </h2>
+			<div th:if="${param.error}">メールアドレス／パスワードが正しくありません</div>
+	        <div class="field">
+				メールアドレス
+	          <div class="ui left icon input">
+	            <i class="user icon"></i>
+	            <input type="text" name="user" placeholder="メールアドレス">
+	          </div>
+	        </div>
+	        <div class="field">
+	          <div class="ui left icon input">
+	            <i class="lock icon"></i>
+	            <input type="password" name="password" placeholder="パスワード">
+	          </div>
+	        </div>
+			  <div class="field">
+				  <div class="ui left icon input">
+					  <i class="lock icon"></i>
+					  <input type="password" name="password_confirm" placeholder="パスワード確認">
+				  </div>
+			  </div>
+	        <button type="submit" class="ui teal button">新規登録</button>
+	      </div>
+	
+	      <div class="ui error message"></div>
+	
+	    </form>
+	
+	    <div class="ui message">
+	      すでにアカウントを持っていますか？ <a th:href="@{login}">ログイン</a>
+	    </div>
+	  </div>
+</div>
+</th:block>
+</html>
