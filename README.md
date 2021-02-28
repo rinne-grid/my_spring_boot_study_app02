@@ -1,23 +1,23 @@
-### Spring Bootの学習記録(～2021/02/28)
+## Spring Bootの学習記録(～2021/02/28)
 
 - TODOアプリの作成
   - [x] ユーザ登録ができること
   - [x] ログインができること
   - [x] TODOの登録ができること
   - [x] TODOの参照ができること
-  - [] TODOの更新ができること
-  - [] TODOの削除ができること
-  - [] TODOの表示条件が指定できること
-    - [] 未完了のタスク
-    - [] 完了のタスク
-  - [] TODOの表示順序を指定できること
-     - [] 開始日の昇順
-     - [] 開始日の降順
-     - [] 終了日の昇順
-     - [] 終了日の降順
+  - [ ] TODOの更新ができること
+  - [ ] TODOの削除ができること
+  - [ ] TODOの表示条件が指定できること
+    - [ ] 未完了のタスク
+    - [ ] 完了のタスク
+  - [ ] TODOの表示順序を指定できること
+     - [ ] 開始日の昇順
+     - [ ] 開始日の降順
+     - [ ] 終了日の昇順
+     - [ ] 終了日の降順
 
 
-### 利用までの手順
+## 利用までの手順
 
 * 環境構築
 
@@ -42,9 +42,9 @@ http://localhost:8080/rngd
 ```
 
 
-### 備忘録
+#### 備忘録
 
-#### ユーザ登録と同時にログイン画面に遷移する
+##### ユーザ登録と同時にログイン画面に遷移する
 
 * WebSecurityConfigでauthenticationManagerBeanをオーバーライドし、AuthenticationManagerを返すようにする
   
@@ -81,7 +81,7 @@ http://localhost:8080/rngd
   appUserManagerService.authWithAuthManager(request, user, password);
 ```
 
-#### アプリユーザ（認証済）を取得する
+##### アプリユーザ（認証済）を取得する
 
 ```java
     // AppUserManagerService.java 59行目
@@ -95,7 +95,7 @@ http://localhost:8080/rngd
 ```
 
 
-#### ManyToOneでリレーションを貼る(TodoModel <- AppUserModel)
+##### ManyToOneでリレーションを貼る(TodoModel <- AppUserModel)
 
 ```java
     // TodoModel.java 50行目
@@ -103,14 +103,13 @@ http://localhost:8080/rngd
     private AppUserModel user;
 ```
 
-#### 特定の条件でデータを検索する
+##### 特定の条件でデータを検索する
+
 
 ```java
-
+    // TodoModelRepository.java
+    List<TodoModel> findByUser(AppUserModel user);
 ```
-
-
-
 
 
 
