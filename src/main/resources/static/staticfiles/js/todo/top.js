@@ -5,18 +5,17 @@ const ELEMENT_NAME_END_DATE             = "end_date";
 const ELEMENT_NAME_END_TIME_HOUR        = "end_time_hour";
 const ELEMENT_NAME_END_TIME_MINUTES     = "end_time_minutes";
 
-$('.ui.checkbox').checkbox();
-$('.ui.accordion').accordion();
-
 const todayObj = window.RNGD_TODO.getTodayDateTime();
 const dtStr = `${todayObj.year}-${todayObj.month}-${todayObj.date}`;
 const hourStr = todayObj.hour;
 const minutesStr = todayObj.minutes;
 
-// 開始日の設定
-$(`[name=${ELEMENT_NAME_START_DATE}]`).val(dtStr);
-$(`[name=${ELEMENT_NAME_START_TIME_HOUR}]`).val(hourStr);
-$(`[name=${ELEMENT_NAME_START_TIME_MINUTES}]`).val(minutesStr);
+const setStartDate = function() {
+    // 開始日の設定
+    $(`[name=${ELEMENT_NAME_START_DATE}]`).val(dtStr);
+    $(`[name=${ELEMENT_NAME_START_TIME_HOUR}]`).val(hourStr);
+    $(`[name=${ELEMENT_NAME_START_TIME_MINUTES}]`).val(minutesStr);
+}
 
 
 // 開始時刻、終了時刻の時分を0埋めする

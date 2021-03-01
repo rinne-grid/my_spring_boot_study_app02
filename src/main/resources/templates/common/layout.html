@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${title} ?: _">Insert title here</title>
-    <link rel="stylesheet" th:href="@{staticfiles/semantic-ui/semantic.min.css}" />
-    <script th:src="@{staticfiles/js/jquery-3.1.1.min.js}"></script>
-    <script th:src="@{staticfiles/semantic-ui/semantic.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/staticfiles/semantic-ui/semantic.min.css}" />
+    <script th:src="@{/staticfiles/js/jquery-3.1.1.min.js}"></script>
+    <script th:src="@{/staticfiles/semantic-ui/semantic.min.js}"></script>
     <!-- font指定 -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=Nunito:ital,wght@1,300&display=swap" rel="stylesheet">
     <!-- 共通スタイル読み込み -->
-    <link rel="stylesheet" type="text/css" th:href="@{staticfiles/css/common/style.css}" >
+    <link rel="stylesheet" type="text/css" th:href="@{/staticfiles/css/common/style.css}" >
     <!-- ヘッダースタイル -->
-    <link rel="stylesheet" th:href="@{staticfiles/css/brand/header.css}" >
-    <script th:src="@{staticfiles/js/common/utility.js}"></script>
+    <link rel="stylesheet" th:href="@{/staticfiles/css/brand/header.css}" >
+    <script th:src="@{/staticfiles/js/common/utility.js}"></script>
 </head>
 <body>
 <th:block th:if="${single}">

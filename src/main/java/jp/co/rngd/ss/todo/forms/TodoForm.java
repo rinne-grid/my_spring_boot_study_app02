@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TodoForm {
+    private String todoId;
     @NotBlank
     private String subject;
     
