@@ -27,31 +27,31 @@
                         <div class="fields">
                             <div class="seven wide field">
                                 <label>開始日</label>
-                                <input type="date" name="start_date" required th:value="${#temporals.format(todo.start_date, 'yyyy-MM-dd')}">
+                                <input type="date" name="start_date" required th:value="${#temporals.format(todo.startDate, 'yyyy-MM-dd')}">
                             </div>
                             <div class="six wide field">
                                 <label>開始時刻</label>
                                 <div class="two fields">
                                     <div class="field">
-                                        <input type="number" name="start_time_hour" step="1"min="0" max="24" required th:value="${#temporals.format(todo.start_time, 'HH')}">
+                                        <input type="number" name="start_time_hour" step="1"min="0" max="24" required th:value="${#temporals.format(todo.startTime, 'HH')}">
                                     </div>
                                     <div class="field">
-                                        <input type="number" name="start_time_minutes" step="1" min="0" max="59" required th:value="${#temporals.format(todo.start_time, 'mm')}">
+                                        <input type="number" name="start_time_minutes" step="1" min="0" max="59" required th:value="${#temporals.format(todo.startTime, 'mm')}">
                                     </div>
                                 </div>
                             </div>
                             <div class="seven wide field">
                                 <label>終了日</label>
-                                <input type="date" name="end_date" th:value="${#temporals.format(todo.end_date, 'yyyy-MM-dd')}">
+                                <input type="date" name="end_date" th:value="${#temporals.format(todo.endDate, 'yyyy-MM-dd')}">
                             </div>
                             <div class="six wide field">
                                 <label>終了時刻</label>
                                 <div class="two fields">
                                     <div class="field">
-                                        <input type="number" name="end_time_hour" step="1"min="0" max="24" th:value="${#temporals.format(todo.end_time, 'HH')}">
+                                        <input type="number" name="end_time_hour" step="1"min="0" max="24" th:value="${#temporals.format(todo.endTime, 'HH')}">
                                     </div>
                                     <div class="field">
-                                        <input type="number" name="end_time_minutes" step="1" min="0" max="59" th:value="${#temporals.format(todo.end_time, 'mm')}">
+                                        <input type="number" name="end_time_minutes" step="1" min="0" max="59" th:value="${#temporals.format(todo.endTime, 'mm')}">
                                     </div>
                                 </div>
                             </div>

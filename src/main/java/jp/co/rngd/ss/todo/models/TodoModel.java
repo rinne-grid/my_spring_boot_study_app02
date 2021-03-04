@@ -1,7 +1,6 @@
 package jp.co.rngd.ss.todo.models;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -17,6 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name="todo")
+@Table
 public class TodoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,16 +34,16 @@ public class TodoModel {
     private String body;
     
     @Column(name="start_date")
-    private LocalDateTime start_date;
+    private LocalDateTime startDate;
     
     @Column(name="start_time")
-    private LocalDateTime start_time;
+    private LocalDateTime startTime;
     
     @Column(name="end_date")
-    private LocalDateTime end_date;
+    private LocalDateTime endDate;
     
     @Column(name="end_time")
-    private LocalDateTime end_time;
+    private LocalDateTime endTime;
     
     @Column(name="completed")
     private boolean completed;

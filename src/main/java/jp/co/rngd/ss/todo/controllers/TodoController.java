@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.rngd.ss.todo.controllers.model_settings.AppModelSetting;
 import jp.co.rngd.ss.todo.controllers.model_settings.BaseModelSetting;
+import jp.co.rngd.ss.todo.entity.TodoSearchCondition;
 import jp.co.rngd.ss.todo.forms.TodoForm;
 import jp.co.rngd.ss.todo.models.AppUserModel;
 import jp.co.rngd.ss.todo.models.TodoModel;
@@ -26,16 +28,22 @@ public class TodoController {
     private final AppUserManagerService appUserManagerService;
 
     @GetMapping("/top")
-    public String top(Model model) {
+    public String top(Model model, @RequestParam(name = "order", required = false) String order, @RequestParam(name = "filter", required = false) String filter) {
         BaseModelSetting.applyHeaderFooterModel(model);
         model.addAttribute("contents", "todo_app/top::contents");
         model.addAttribute("title", "トップページ");
         AppUserModel user = appUserManagerService.getAppUser();
         log.info("top {}", user);
+        log.info("order {}", order);
+        log.info("filter {}", filter);
+        TodoSearchCondition cond = TodoSearchCondition.of(order, filter);
         
         // todoリストの取得
-        var todoList = todoManagerService.getTodoList(user);
+//        var todoList = todoManagerService.getTodoList(user);
+        var todoList = todoManagerService.searchTodoList(user, cond);
         model.addAttribute("todoList", todoList);
+        model.addAttribute("order", order);
+        model.addAttribute("filter", filter);
         
         AppModelSetting.applyMenuModel(model);
         return "common/layout";

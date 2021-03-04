@@ -5,8 +5,14 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import jp.co.rngd.ss.todo.consts.TodoConst;
+import jp.co.rngd.ss.todo.entity.SearchCondition;
+import jp.co.rngd.ss.todo.entity.TodoSearchCondition;
 import jp.co.rngd.ss.todo.forms.TodoForm;
 import jp.co.rngd.ss.todo.models.AppUserModel;
 import jp.co.rngd.ss.todo.models.TodoModel;
@@ -36,8 +42,8 @@ public class TodoManagerService {
                 "-"
         );
         
-        todoModel.setStart_date(startDate);
-        todoModel.setStart_time(startDate);
+        todoModel.setStartDate(startDate);
+        todoModel.setStartTime(startDate);
         
         // 終了日
         if(form.getEnd_date() != null && !form.getEnd_date().equals("")) {
@@ -47,8 +53,8 @@ public class TodoManagerService {
                     form.getEnd_time_minutes(),
                     "-"
             );
-            todoModel.setEnd_date(endDate);
-            todoModel.setEnd_time(endDate);
+            todoModel.setEndDate(endDate);
+            todoModel.setEndTime(endDate);
         }
         System.out.println(form.getCompleted());
         todoModel.setCompleted(form.getCompleted() != null);
@@ -102,6 +108,27 @@ public class TodoManagerService {
     public List<TodoModel> getTodoList(AppUserModel user) {
         List<TodoModel> todoList = todoRep.findByUser(user);
         return todoList;
+    }
+    
+    public List<TodoModel> searchTodoList(AppUserModel user, SearchCondition cond) {
+        TodoModel todo = new TodoModel();
+
+        TodoSearchCondition todoSearchCondition = (TodoSearchCondition) cond;
+
+        // 抽出条件を設定：対象ユーザ
+        todo.setUser(user);
+        todo = (TodoModel)cond.filter(todo);
+        // リクエストパラメータ：完了/未完了
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withIgnorePaths("id");
+        
+        if(!cond.isValidFilter() || todoSearchCondition.getFilterSetting().equals(TodoConst.FILTER_SETTING_DISPLAY_ALL)) {
+            matcher = matcher.withIgnorePaths("completed");
+        }
+        
+        Example<TodoModel> example = Example.of(todo, matcher);
+        Sort sort = cond.orderBy();
+        return todoRep.findAll(example, sort);
     }
     
     /***

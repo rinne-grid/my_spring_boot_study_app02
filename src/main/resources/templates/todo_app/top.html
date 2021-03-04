@@ -73,9 +73,33 @@
                                   </div>
                                 </div>
                             </div>
-                            <input type="submit" class="ui submit button teal" value="登録">
+                            <input type="submit" class="ui submit button fluid teal" value="登録">
                         </div>
                     </div>
+                </form>
+            </div>
+            <div class="ui segment form">
+                <div class="two fields">
+                    <div class="field">
+                        <label>並べ替え</label>
+                        <select class="ui fluid dropdown" name="order">
+                            <option value="">並び順を選択</option>
+                            <option th:selected="${order == 'start_date_desc'}" value="start_date_desc">開始日の降順</option>
+                            <option th:selected="${order == 'start_date_asc'}" value="start_date_asc">開始日の昇順</option>
+                            <option th:selected="${order == 'end_date_asc'}" value="end_date_asc">終了日の降順</option>
+                            <option th:selected="${order == 'end_date_desc'}" value="end_date_asc">終了日の昇順</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>絞り込み</label>
+                        <select class="ui dropdown" name="filter">
+                            <option value="display_all">全て</option>
+                            <option th:selected="${filter == 'display_uncompleted'}" value="display_uncompleted">未完了</option>
+                            <option th:selected="${filter == 'display_completed'}" value="display_completed">完了</option>
+                        </select>
+                    </div>
+                </div>
+                <form id="orderFilterForm" method="get">
                 </form>
             </div>
             <div class="ui segment">
@@ -85,9 +109,23 @@
                         <div class="content">
                             <div class="header">[[${todo.subject}]]</div>
                             <div class="meta">
-                              <span>[[${todo.start_date}]]</span>
+                              <span>
+                                <i class="calendar alternate icon"></i>開始: [[${#temporals.format(todo.startDate, 'yyyy-MM-dd')}]] [[${#temporals.format(todo.startTime, 'HH:mm')}]]
+                               </span>
+                               <br>
+                              <span>
+                                <i class="calendar check icon"></i>終了: [[${#temporals.format(todo.endDate, 'yyyy-MM-dd')}]] [[${#temporals.format(todo.endTime, 'HH:mm')}]]
+                               </span>                               
                             </div>
                             <p>[[${todo.body}]]</p>
+                          </div>
+                          <div class="extra content">
+                            <th:block th:if="!${todo.completed}">
+                            <i class="check icon"></i>未完了
+                            </th:block>
+                            <th:block th:if="${todo.completed}">
+                            <i class="green check icon"></i>完了
+                            </th:block>
                           </div>
                             <a class="ui bottom attached button" th:href="@{'/todo/'+${todo.id}+'/detail'}">
                               <i class="edit icon"></i>
@@ -104,5 +142,26 @@
     <script>
     setStartDate();
     </script>
+    <script type="text/javascript" th:inline="javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+    /*<![CDATA[*/
+    
+        const form = $("#"+ELEMENT_NAME_ORDER_FILTER_FORM);
+        $("<input>").attr({
+            "type": "hidden",
+            "name": "order",
+            "value": [[${order}]]
+        }).appendTo(form);
+        
+        $("<input>").attr({
+            "type": "hidden",
+            "name": "filter",
+            "value": [[${filter}]]
+        }).appendTo(form);
+        
+    /*]]>*/
+    });
+    </script>
+    
 </th:block>
 </html>
