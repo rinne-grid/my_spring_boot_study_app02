@@ -13,7 +13,10 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
-      - image: circleci/mysql:8.0.23
+      - image: circleci/mysql:8.0.4
+        command: mysqld --default-authentication-plugin=mysql_native_password
+        ports:
+          - 3306:3306
 
     working_directory: ~/repo
 
@@ -30,17 +33,20 @@ jobs:
     steps:
       - checkout
       - run:
-            for i in `seq 1 10`;
-            do
-              nc -z 127.0.0.1 3306 && echo Success && exit 0
-              echo -n .
-              sleep 1
-            done
-            echo Failed waiting for MySQL && exit 1
+            name: MySQLが準備できるまで待機する
+            command: |
+              for i in `seq 1 10`;
+              do
+                nc -z 127.0.0.1 3306 && echo Success && exit 0
+                echo -n .
+                sleep 1
+              done
+              echo Failed waiting for MySQL && exit 1
       - run:
             name: MySQL CLIのインストール; DB作成
             command: |
-              sudo apt-get install default-mysql-client
+              sudo apt update -y
+              sudo apt install -y default-mysql-client
               mysql -h 127.0.0.1 -u ${MYSQL_USER} -p${MYSQL_PASSWORD} < sql-data/init.sql
 
       # Download and cache dependencies
