@@ -73,25 +73,25 @@ public class AuthControllerTest {
         
     }
     
-    @Test
-    public void signup_ユーザの新規登録ができる() throws Exception {
-        String userName = "TestUser@hoge.com";
-        String password = "testuser";
-        this.authControllerMock.perform(
-                post("/signup")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .with(SecurityMockMvcRequestPostProcessors.csrf())
-                .param("user", userName)
-                .param("password", password)
-                .param("password_confirm", password)
-        )
-        .andExpect(status().is3xxRedirection())
-        .andExpect(
-                view().name("redirect:/top")
-        )
-        ;
+//    @Test
+//    public void signup_ユーザの新規登録ができる() throws Exception {
+//        String userName = "TestUser@hoge.com";
+//        String password = "testuser";
+//        this.authControllerMock.perform(
+//                post("/signup")
+//                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+//                .with(SecurityMockMvcRequestPostProcessors.csrf())
+//                .param("user", userName)
+//                .param("password", password)
+//                .param("password_confirm", password)
+//        )
+//        .andExpect(status().is3xxRedirection())
+//        .andExpect(
+//                view().name("redirect:/top")
+//        )
+//        ;
 //        assertThat(appUserModelRepository.findByUsername(userName).getUsername(), is(userName));
-    }
+//    }
     
     @Test
     public void login_ログインページが表示される() throws Exception {
