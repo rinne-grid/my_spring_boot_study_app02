@@ -28,7 +28,7 @@ jobs:
       TERM: dumb
       DATASOURCE: jdbc:mysql://localhost:3306/rngd_ss_todo
       MYSQL_ROOT_USER: root
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: rngd_ss_todo
       MYSQL_USER: springuser
