@@ -3,20 +3,26 @@ package jp.co.rngd.ss.todo;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 
+import jp.co.rngd.ss.todo.entity.RngdDataSource;
+
 public class RngdServerSideTodoApplicationTestConfiguration {
+    @Autowired
+    RngdDataSource rngdDataSource;
     @Bean
     public DataSource dataSource() {
+        System.out.println(rngdDataSource.getUsername());
         return new TransactionAwareDataSourceProxy(
                 DataSourceBuilder
                     .create()
-                    .username("springuser")
-                    .password("springuser")
-                    .url("jdbc:mysql://192.168.99.101:3306/rngd_ss_todo")
-                    .driverClassName("com.mysql.cj.jdbc.Driver")
+                    .username(rngdDataSource.getUsername())
+                    .password(rngdDataSource.getPassword())
+                    .url(rngdDataSource.getUrl())
+                    .driverClassName(rngdDataSource.getDriverClassName())
                     .build()
         );
     }
