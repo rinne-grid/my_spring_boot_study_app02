@@ -14,6 +14,8 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
       - image: circleci/mysql:8.0.4
+        environment:
+          DB_HOST: 127.0.0.1
         command: mysqld --default-authentication-plugin=mysql_native_password
         ports:
           - 3306:3306
@@ -48,7 +50,7 @@ jobs:
             command: |
               sudo apt update -y
               sudo apt install -y default-mysql-client
-              mysql -h localhost -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} < sql-data/init.sql
+              mysql -h 127.0.0.1 -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} < sql-data/init.sql
 
       # Download and cache dependencies
       - restore_cache:
