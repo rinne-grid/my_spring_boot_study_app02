@@ -2,6 +2,8 @@
 
 ![images](http://www.rinsymbol.sakura.ne.jp/github_images/rngd_todo_20210304.png)
 
+![CircleCI](https://circleci.com/gh/rinne-grid/my_spring_boot_study_app02.svg?style=shield&circle-token=19d215d4f9f60615522739756f52cb5c210b7118)
+
 ## Spring Bootの学習記録(～2021/02/28)
 
 - TODOアプリの作成
@@ -24,6 +26,9 @@
      
 - TODOアプリのテスト
   - [ ] テストコードによるテストを実施すること
+    - [x] AuthController
+    - [ ] TodoController
+    - [ ] Services
   - [ ] Github Actionsでプルリクエスト作成時にテストが実行されること
 - TODOアプリのPro機能追加
   - [ ] 一般ユーザ・Proユーザの区分変更
